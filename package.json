@@ -34,5 +34,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "esta es mi primera aplicasion echa con react create component y cuenta hacia arriba y hacia abajo. ## comandos disponible ### `npm start`",
+  "main": "index.js",
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
 }
