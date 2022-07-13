@@ -17,7 +17,7 @@ export class App extends Component {
   }
   // esta sintaxis es porque estamos usando "class extend component" mas adelante ya no las necesitaremos cuando utilisemos "fuctional component"
   aumentarContador(){
-    if(this.state.contador < 21)
+    if(this.state.contador < this.state.limiteSuperior)
     this.setState({ contador : this.state.contador + 1})
   }
 
@@ -43,17 +43,27 @@ export class App extends Component {
     return (
       <div className="App App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>aplicacion de Contador</p>
-          <p>{ this.state.contador }</p>
-          <p>{JSON.stringify(this.state)}</p>{/* esto es para imprimir el estado */}
+          <p>
+            aplicacion de Contador
+          </p>
+          <p>
+            { this.state.contador }
+          </p>
+          <p>
+            {JSON.stringify(this.state)}
+          </p>{/* esto es para imprimir el estado */}
+          
           {/* button mas */}
           <button onClick={ this.aumentarContador }>Mas</button>
           <label>Limite Superior</label>
           <input onChange={ (e) => this.establecerLimiteSuperior(e.target.value) } placeholder="limite Superior"/>
+          
           {/* button menos */}
           <button onClick={ this.restarContador }>Menos</button>
           <label>Limite Inferior</label>
-          <input onChange={ (e) => this.establecerLimiteInferior(e.target.value) } placeholder="limite inferior"/>
+          <input onChange={ (e) => this.establecerLimiteInferiro(e.target.value) } placeholder="limite Inferior"/>
+                    
+          
           <button onClick={ () => this.resetState() }>Reset</button>
       </div>
     );
