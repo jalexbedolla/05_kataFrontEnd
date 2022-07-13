@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+import logo from "../../assets/logo.svg";
 import "./Counter.css";
+import InputValue from "../../Shared/InputValue";
 
 export class Counter extends Component {
   //funcion especial para inicializar nuestro objeto que es un componente de react
@@ -13,6 +14,8 @@ export class Counter extends Component {
     }
     this.aumentarContador = this.aumentarContador.bind(this)
     this.restarContador = this.restarContador.bind(this)
+    this.establecerLimiteInferior = this.establecerLimiteInferior.bind(this)
+    this.establecerLimiteSuperior = this.establecerLimiteSuperior.bind(this)
     //this.resetContador = this.resetContador.bind(this) no la usamos porque usamos una "arrow fuction"
   }
   // esta sintaxis es porque estamos usando "class extend component" mas adelante ya no las necesitaremos cuando utilisemos "fuctional component"
@@ -34,38 +37,41 @@ export class Counter extends Component {
     this.setState({ limiteSuperior:nuevoLimite })
   }
 
-  establecerLimiteInferiro(nuevoLimite){
+  establecerLimiteInferior(nuevoLimite){
     this.setState({ limiteInferior:nuevoLimite })
   }
 
   render() {
     //let valor= 5
     return (
-      <div className="App App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            aplicacion de Contador
-          </p>
-          <p>
-            { this.state.contador }
-          </p>
-          <p>
-            {JSON.stringify(this.state)}
-          </p>{/* esto es para imprimir el estado */}
+        <div className="App App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <p>
+                aplicacion de Contador
+            </p>
+            <p>
+                { this.state.contador }
+            </p>
+            <p>
+                {JSON.stringify(this.state)}
+            </p>{/* esto es para imprimir el estado */}       
+            
+            <InputValue
+                title='Limite Inferior'
+                placeholder='Ingresa el limite Inferior'
+                setLimit={this.establecerLimiteInferior}
+            />  
+            
+            <InputValue
+                title='limite Superior'
+                placeholder='Ingresa el limite Superior'
+                setLimit={this.establecerLimiteSuperior}
+            />
           
-          {/* button mas */}
-          <button onClick={ this.aumentarContador }>Mas</button>
-          <label>Limite Superior</label>
-          <input onChange={ (e) => this.establecerLimiteSuperior(e.target.value) } placeholder="limite Superior"/>
-          
-          {/* button menos */}
-          <button onClick={ this.restarContador }>Menos</button>
-          <label>Limite Inferior</label>
-          <input onChange={ (e) => this.establecerLimiteInferiro(e.target.value) } placeholder="limite Inferior"/>
-                    
-          
-          <button onClick={ () => this.resetState() }>Reset</button>
-      </div>
+            <button onClick={ this.aumentarContador }>Mas</button>
+            <button onClick={ this.restarContador }>Menos</button>                
+            <button onClick={ () => this.resetState() }>Reset</button>
+        </div>
     );
   }
 }
