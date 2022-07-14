@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import logo from "../../assets/logo.svg";
 import "./Counter.css";
 import InputValue from "../../Shared/InputValue";
+import Button from "../../Shared/Button";
 
 export class Counter extends Component {
   //funcion especial para inicializar nuestro objeto que es un componente de react
@@ -10,8 +11,10 @@ export class Counter extends Component {
     this.state={
       contador:0,
       limiteInferior:0,
-      limiteSuperior:12
+      limiteSuperior:12,
+      mensaje:[]
     }
+    
     this.aumentarContador = this.aumentarContador.bind(this)
     this.restarContador = this.restarContador.bind(this)
     this.establecerLimiteInferior = this.establecerLimiteInferior.bind(this)
@@ -52,7 +55,8 @@ export class Counter extends Component {
             <p>
                 { this.state.contador }
             </p>
-            <p>
+
+            {/* <p>
                 {JSON.stringify(this.state)}
             </p>{/* esto es para imprimir el estado */}       
             
@@ -67,9 +71,9 @@ export class Counter extends Component {
                 placeholder='Ingresa el limite Superior'
                 setLimit={this.establecerLimiteSuperior}
             />
-          
-            <button onClick={ this.aumentarContador }>Mas</button>
-            <button onClick={ this.restarContador }>Menos</button>                
+            <Button handleClick={this.aumentarContador} label='Mas' color={true} />
+            <Button handleClick={this.restarContador} label="Menos" color={false} />
+
             <button onClick={ () => this.resetState() }>Reset</button>
         </div>
     );
