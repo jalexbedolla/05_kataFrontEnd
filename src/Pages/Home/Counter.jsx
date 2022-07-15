@@ -25,11 +25,13 @@ export class Counter extends Component {
   aumentarContador(){
     if(this.state.contador < this.state.limiteSuperior)
     this.setState({ contador : this.state.contador + 1})
+    else this.setState({ mensaje:[...this.state.mensaje, `El limite Superior es ${this.state.establecerLimiteSuperior}`]})
   }
 
   restarContador(){
     if(this.state.contador > this.state.limiteInferior)
     this.setState({ contador : this.state.contador - 1})
+    else this.setState({ mensaje:[...this.state.mensaje, `El limite Inferior  es ${this.state.establecerLimiteInferior}`]})
   }
 
   resetState(){
@@ -55,11 +57,8 @@ export class Counter extends Component {
             <p>
                 { this.state.contador }
             </p>
-
-            {/* <p>
-                {JSON.stringify(this.state)}
-            </p>{/* esto es para imprimir el estado */}       
-            
+   
+           
             <InputValue
                 title='Limite Inferior'
                 placeholder='Ingresa el limite Inferior'
@@ -71,10 +70,17 @@ export class Counter extends Component {
                 placeholder='Ingresa el limite Superior'
                 setLimit={this.establecerLimiteSuperior}
             />
-            <Button handleClick={this.aumentarContador} label='Mas' color={true} />
-            <Button handleClick={this.restarContador} label="Menos" color={false} />
+            <Button handleClick={this.aumentarContador} label='Mas' clase='btn btn-success' />
+            <Button handleClick={this.restarContador} label="Menos" clase='btn btn-danger' />
 
             <button onClick={ () => this.resetState() }>Reset</button>
+            <ul>
+              {
+                this.state.mensaje.map( mensaje => (
+                  <li>{ mensaje }</li>
+                ) )
+              }
+            </ul>
         </div>
     );
   }
